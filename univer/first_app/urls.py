@@ -15,4 +15,9 @@ urlpatterns = [
     
     #При использовании параметров строки запроса, маршрутизация не изменяется
     path('user/', views.user),
+
+    #
+    path('nums/', views.numbers),
+
+    path('product/create/', views.create_product),
 ]

@@ -2,6 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
+from django.template.response import TemplateResponse
+
+from django import forms
+from .forms import ProductForm
 
 # Вернет текст "Hello World"
 def index(request):
@@ -27,4 +31,21 @@ def user(request):
 
     #Получаем user_name из параметров строки запроса, по умолчанию задаем значение Tom
     user_name = request.GET.get("user_name", "Tom")
-    return HttpResponse(f"Информация о пользователе: id:{id}, имя:{user_name}")
+    data = {"user_name" : user_name, "user_id" : id}
+    return TemplateResponse(request, "user.html", data)
+    # return HttpResponse(f"Информация о пользователе: id:{id}, имя:{user_name}")
+
+def numbers(request):
+    number = int(request.GET.get("n", 0))
+    nums_info = []
+    for n in range(number):
+        if n % 2 == 0:
+            nums_info.append((n, 0))
+        else:
+            nums_info.append((n, 1))
+    data = {"nums_info": nums_info}
+    return TemplateResponse(request, "numbers.html", data)
+
+def create_product(request):
+    data = {"form": forms.ProductForm(request.POST)}
+    return TemplateResponse(request, "create_prod.html", data)
