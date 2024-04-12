@@ -11,7 +11,7 @@ urlpatterns = [
     path('best', views.best, name="home"),
 
     #При использовании параметров функции-представления, параметры указываются в системе маршрутизации
-    path('product/<int:cost>/<str:prod_name>', views.product),
+    path('product/<int:prod_id>/', views.product),
     
     #При использовании параметров строки запроса, маршрутизация не изменяется
     path('user/', views.user),
@@ -20,4 +20,8 @@ urlpatterns = [
     path('nums/', views.numbers),
 
     path('product/create/', views.create_product),
+
+    path('product/', views.product_list),
+
+    path('product/delete/<int:prod_id>/', views.delete_product),
 ]

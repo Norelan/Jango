@@ -16,9 +16,12 @@ Including another URLconf
 """
 
 from django.urls import include, path
+from django.contrib import admin
 
 
 urlpatterns = [
     #Вызовет views.index при открытии главной страницы сайта
     path('first_app/', include('first_app.urls')),
+    #Панель администратора
+    path('admin/', admin.site.urls)
 ]
