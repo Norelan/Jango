@@ -24,4 +24,14 @@ urlpatterns = [
     path('product/', views.product_list),
 
     path('product/delete/<int:prod_id>/', views.delete_product),
+
+
+    path('university/<int:uni_id>/', views.university),
+
+    path('university/create/', views.create_university),
+
+    path('university/', views.university_list),
+
+    path('university/delete/<int:uni_id>/', views.delete_university),
+
 ]

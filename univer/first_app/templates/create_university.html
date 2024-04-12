@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Внесение нового университета</title>
+</head>
+<body>
+    <h1>Внесение нового университета</h1>
+    <form method="POST">
+        {% csrf_token %}
+    <table>
+        {{ form }}
+    </table>
+    <input type="submit" value="Send Product" >
+</body>
+</html>
