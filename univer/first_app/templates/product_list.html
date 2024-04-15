@@ -5,10 +5,10 @@
     <title>Product list</title>
 </head>
 <body>
-    <a href="create">Добавить товар</a>
-    <h2>Список товаров</h2>
+    <a href="create">Добавить нового студента</a>
+    <h2>Список студентов</h2>
     <table>
-        <thead><th>Id</th><th>ФИО</th><th>Дата Рождения</th><th>Университет</th><th>Год поступления</th><th></th></thead>
+        <thead><th>Id</th><th>ФИО</th><th>Дата рождения</th><th>Университет</th><th>Год поступления</th><th></th></thead>
         {% for product in products %}
         <tr>
             <td>{{ product.id }}</td>
@@ -17,6 +17,7 @@
             <td>{{ product.univer }}</td>
             <td>{{ product.year }}</td>
             <td><a href="delete/{{product.id}}">Удалить</a></td>
+            <td><a href="update/{{product.id}}">Изменить</a></td>
         </tr>
         {% endfor %}
     </table>

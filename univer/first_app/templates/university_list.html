@@ -5,10 +5,10 @@
     <title>Product list</title>
 </head>
 <body>
-    <a href="create">Добавить товар</a>
-    <h2>Список товаров</h2>
+    <a href="create">Добавить университет</a>
+    <h2>Список университетов</h2>
     <table>
-        <thead><th>Id</th><th>Название</th><th>Сокращенно Название</th><th>Дата основания</th><th></th></thead>
+        <thead><th>Id</th><th>Название</th><th>Сокращенное название</th><th>Дата основания</th><th></th></thead>
         {% for university in universities %}
         <tr>
             <td>{{ university.id }}</td>
@@ -16,6 +16,7 @@
             <td>{{ university.short_name }}</td>
             <td>{{ university.year }}</td>
             <td><a href="delete/{{university.id}}">Удалить</a></td>
+            <td><a href="update/{{university.id}}">Изменить</a></td>
         </tr>
         {% endfor %}
     </table>

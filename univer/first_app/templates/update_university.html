@@ -2,15 +2,15 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Создание нового студента</title>
+    <title>Внесение изменений</title>
 </head>
 <body>
-    <h1>Создание нового студента</h1>
+    <h1>Внесение изменений</h1>
     <form method="POST">
         {% csrf_token %}
     <table>
         {{ form }}
     </table>
-    <input type="submit" value="Создать" >
+    <input type="submit" value="Обновить" >
 </body>
 </html>

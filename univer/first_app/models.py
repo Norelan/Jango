@@ -20,4 +20,5 @@ class Product(models.Model):
     univer = models.ForeignKey(University, on_delete = models.SET_NULL, null=True,verbose_name = "Университет")
     year = models.IntegerField(verbose_name = "Год поступления")
     def __str__(self):
-        return f"{self.name}_{self.cost}"
+        #return f"{self.name}_{self.cost}"
+        return self.name

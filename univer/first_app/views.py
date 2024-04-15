@@ -53,7 +53,7 @@ def product(request, prod_id):
         data = {"prod_name": curr_prod.name, "prod_birth":curr_prod.birth, "prod_uni":curr_prod.univer, "prod_year":curr_prod.year}
         return TemplateResponse(request, "product.html", data)
     except Product.DoesNotExist:
-        return HttpResponseNotFound("Продукта с таким id не существует")
+        return HttpResponseNotFound("Студента с таким id не существует")
 
 def create_product(request):
     if request.method == "POST":
@@ -77,13 +77,33 @@ def create_product(request):
         data = {"form": ProductForm()}
         return TemplateResponse(request, "create_prod.html", data)
     
+def update_product(request, prod_id):
+    if request.method == "POST":
+        #Если мы ввели данные в формы, и нажали на кнопку "Send Product", то тогда метод запроса будет POST(как мы указали в шаблоне),
+        #и соответственно, выполнится этот блок, который просто перенаправит нас на страницу с информацией об продукте
+        #form = ProductForm(request.POST)
+
+        prod_name = request.POST.get("name")
+        prod_birth = request.POST.get("birth")
+        prod_univer_id = request.POST.get("univer")
+        prod_univer = University.objects.get(id=prod_univer_id )
+        prod_year = request.POST.get("year")
+
+        Product.objects.filter(id=prod_id).update(name = prod_name, birth = prod_birth, univer = prod_univer, year = prod_year)
+
+        return HttpResponseRedirect(f"/first_app/product/{prod_id}")
+    else:
+        #Если же мы просто открыли страницу, то выполнится этот блок, который выведет нам форму
+        data = {"form": ProductForm()}
+        return TemplateResponse(request, "update_prod.html", data)
+    
 def delete_product(request, prod_id):
     try:
         product = Product.objects.get(id=prod_id)
         product.delete()
         return HttpResponseRedirect("/first_app/product/")
     except Product.DoesNotExist:
-        return HttpResponseNotFound("Продукта с таким id не существует")
+        return HttpResponseNotFound("Студента с таким id не существует")
 
 def product_list(request):
     #Получаем все продукты из базы
@@ -119,6 +139,24 @@ def create_university(request):
         #Если же мы просто открыли страницу, то выполнится этот блок, который выведет нам форму
         data = {"form": UniversityForm()}
         return TemplateResponse(request, "create_university.html", data)
+    
+def update_university(request, uni_id):
+    if request.method == "POST":
+        #Если мы ввели данные в формы, и нажали на кнопку "Send Product", то тогда метод запроса будет POST(как мы указали в шаблоне),
+        #и соответственно, выполнится этот блок, который просто перенаправит нас на страницу с информацией об продукте
+        #form = ProductForm(request.POST)
+
+        prod_name = request.POST.get("name")
+        prod_short_name = request.POST.get("short_name")
+        prod_year = request.POST.get("year")
+
+        University.objects.filter(id=uni_id).update(name = prod_name, short_name = prod_short_name, year = prod_year)
+
+        return HttpResponseRedirect(f"/first_app/university/{uni_id}")
+    else:
+        #Если же мы просто открыли страницу, то выполнится этот блок, который выведет нам форму
+        data = {"form": UniversityForm()}
+        return TemplateResponse(request, "update_university.html", data)
     
 def university_list(request):
     #Получаем все продукты из базы
